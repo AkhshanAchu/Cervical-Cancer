@@ -14,11 +14,9 @@ A deep learning-based dual-stage pipeline for automated cervical cancer detectio
 - [Project Structure](#-project-structure)
 - [Models](#-models)
 - [Installation](#-installation)
-- [Usage](#-usage)
 - [Training Pipeline](#-training-pipeline)
 - [Evaluation](#-evaluation)
 - [Requirements](#-requirements)
-- [Contributing](#-contributing)
 
 ---
 
