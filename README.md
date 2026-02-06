@@ -115,23 +115,6 @@ Cervical-Cancer/
   - **Nucleus Segmentation** (nuc)
 
 #### Architecture Details:
-
-```python
-Input: [B, 3, 1024, 1024]
-         ↓
-    ConvNeXt Encoder
-         ↓
-    Features: [96, 192, 384, 768] @ [64, 32, 16, 8]
-         ↓
-    ┌─────────────────┬─────────────────┐
-    │   Cyt Decoder   │   Nuc Decoder   │
-    │   + Attention   │   + Attention   │
-    └─────────────────┴─────────────────┘
-         ↓                    ↓
-    Cyt Mask              Nuc Mask
-    [B, 1, 1024, 1024]   [B, 1, 1024, 1024]
-```
-
 #### Modules:
 
 **CBAM (Convolutional Block Attention Module)**
@@ -168,28 +151,6 @@ Input: [B, 3, 1024, 1024]
   - Dropout regularization (0.4, 0.3)
 
 #### Architecture Details:
-
-```python
-Input: [B, 5, 256, 256]
-  (3 RGB + 2 Masks)
-         ↓
-    ConvNeXt Features
-    [B, 768, H, W]
-         ↓
-    SE Block (Channel Attention)
-         ↓
-    Global Average Pooling
-    [B, 768]
-         ↓
-    ┌─────────────────────┐
-    │   Attention MLP     │
-    │   768 → 512 → 256   │
-    │   + Self-Attention  │
-    └─────────────────────┘
-         ↓
-    Class Predictions
-    [B, num_classes]
-```
 
 #### Classification Layers:
 
