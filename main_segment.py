@@ -1,11 +1,11 @@
 from utils.data_spliter import train_val_split
 from utils.dataloader import CellSegDataset
-from tools.helper import collect_all_samples
+from tools.helper_segment import collect_all_samples
 from torch.utils.data import DataLoader
 from tools.visualize import visualize_sample
 import torch
 from model.model_seg import DualHeadAttConvNeXtUNet
-from train import train_model
+from train_segment import train_model
 
 
 root = r"C:\Users\akhsh\Desktop\Cancer\Data"

@@ -3,7 +3,8 @@ import torch
 import numpy as np
 from pathlib import Path
 from torch.utils.data import Dataset
-from tools.helper import *
+from tools.helper_segment import *
+from tools.helper_classify import *
 
 class CellSegDataset(Dataset):
     def __init__(self, samples, out_size=256):
@@ -44,3 +45,58 @@ class CellSegDataset(Dataset):
         nuc_mask = torch.from_numpy(nuc_mask).unsqueeze(0).float()
 
         return img, cyt_mask, nuc_mask
+
+class CellClassificationDataset(Dataset):
+    def __init__(self, root_dir, crop_size=256):
+        self.samples = []
+        self.crop = crop_size
+        self.classes = sorted([d.name for d in Path(root_dir).iterdir()])
+        self.class_to_idx = {c: i for i, c in enumerate(self.classes)}
+
+        for cls in self.classes:
+            cdir = Path(root_dir) / cls / "cropped"
+            for img_path in cdir.glob("*.bmp"):
+                stem = img_path.stem
+                cyt_files = list(cdir.glob(f"{stem}_cyt*.dat"))
+                nuc_files = list(cdir.glob(f"{stem}_nuc*.dat"))
+                if len(cyt_files) == 0:
+                    continue
+                self.samples.append(
+                    (img_path, cyt_files, nuc_files, self.class_to_idx[cls])
+                )
+
+        print("Classes:", self.class_to_idx)
+        print("Total samples:", len(self.samples))
+
+    def __len__(self):
+        return len(self.samples)
+
+    def __getitem__(self, idx):
+        img_path, cyt_files, nuc_files, label = self.samples[idx]
+
+        img = cv2.imread(str(img_path))
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img = cv2.resize(img, (self.crop, self.crop))
+        img = img.astype(np.float32) / 255.0
+
+        h, w, _ = img.shape
+
+        cyt_polys = [load_polygon(p) for p in cyt_files]
+        nuc_polys = [load_polygon(p) for p in nuc_files]
+
+        cyt = rasterize_union(cyt_polys, (h, w))
+        nuc = rasterize_union(nuc_polys, (h, w))
+
+        cyt = cyt.astype(np.float32)
+        nuc = nuc.astype(np.float32)
+
+        x = np.concatenate(
+            [
+                img.transpose(2, 0, 1),
+                cyt[None],
+                nuc[None]
+            ],
+            axis=0
+        )
+
+        return torch.from_numpy(x), torch.tensor(label)

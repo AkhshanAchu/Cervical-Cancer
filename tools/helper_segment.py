@@ -3,6 +3,7 @@ import numpy as np
 from collections import defaultdict
 from torch.utils.data import Dataset
 from pathlib import Path
+import torch
 
 def load_polygon(dat_path):
     pts = []
