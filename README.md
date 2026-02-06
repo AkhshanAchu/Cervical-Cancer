@@ -2,7 +2,6 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A deep learning-based dual-stage pipeline for automated cervical cancer detection using medical imaging. This system combines dual head **image segmentation** and feauture attention **classification** models to analyze cervical cell images.
 
