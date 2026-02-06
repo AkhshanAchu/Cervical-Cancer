@@ -275,21 +275,6 @@ python evaluate.py
 
 ## 🎓 Training Pipeline
 
-### Complete Training Workflow
-
-```mermaid
-graph TD
-    A[Raw Cervical Cell Images] --> B[Preprocess & Augment]
-    B --> C[Train Segmentation Model]
-    C --> D[Generate Segmentation Masks]
-    D --> E[Create 5-Channel Input]
-    E --> F[Train Classification Model]
-    F --> G[Evaluate Both Models]
-    G --> H[Final Predictions]
-```
-
-### Detailed Steps:
-
 1. **Data Preparation**
    - Organize images in appropriate directories
    - Apply preprocessing (resize, normalize)
@@ -317,6 +302,7 @@ graph TD
    - Output: Class probabilities (5 classes)
    - Loss: Cross-Entropy Loss
    - Optimizer: AdamW with scheduler
+<img width="1575" height="409" alt="SEG" src="https://github.com/user-attachments/assets/dce9bb49-155c-4386-a8d8-6e18464e831a" />
 
 ---
 
