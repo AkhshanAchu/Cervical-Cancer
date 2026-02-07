@@ -1,4 +1,4 @@
-# 🔬 Cervical Cancer Detection System
+# Cervical Cancer Detection System
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
@@ -7,7 +7,7 @@ A deep learning-based dual-stage pipeline for automated cervical cancer detectio
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Architecture](#-architecture)
@@ -63,7 +63,7 @@ Input Image (Cervical Cell)
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Cervical-Cancer/
@@ -93,7 +93,7 @@ Cervical-Cancer/
 
 ---
 
-## 🤖 Models
+## Models
 
 ### 1. Segmentation Model: Dual-Head Attention U-Net
 
@@ -177,11 +177,11 @@ pip install tensorboard
 
 ---
 
-## 💻 Usage
+## Usage
 
 ### Quick Start
 
-#### 1️⃣ **Stage 1: Train Segmentation Model**
+#### **Stage 1: Train Segmentation Model**
 
 ```bash
 python main_segment.py
@@ -199,7 +199,7 @@ python main_segment.py
 
 ---
 
-#### 2️⃣ **Stage 2: Train Classification Model**
+#### **Stage 2: Train Classification Model**
 
 ```bash
 python main_classify.py
@@ -217,7 +217,7 @@ python main_classify.py
 
 ---
 
-#### 3️⃣ **Evaluate Models**
+#### **Evaluate Models**
 
 ```bash
 python evaluate.py
@@ -231,7 +231,7 @@ python evaluate.py
 
 ---
 
-## 🎓 Training Pipeline
+## Training Pipeline
 
 1. **Data Preparation**
    - Organize images in appropriate directories
@@ -264,7 +264,7 @@ python evaluate.py
 
 ---
 
-## 📊 Evaluation
+## Evaluation
 
 ### Segmentation Metrics
 
@@ -279,7 +279,7 @@ python evaluate.py
 - **Confusion Matrix**: Class-wise predictions
 - **ROC-AUC**: Area under ROC curve
 
-## 🎯 Model Performance
+## Model Performance
 
 ### Expected Performance Metrics
 
